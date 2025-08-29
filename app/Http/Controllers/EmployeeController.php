@@ -158,14 +158,14 @@ class EmployeeController extends Controller
                 return $this->validatorerror($validator->errors());
             }
 
-            $employee = Employee::find($request->id);
-
-            if (!$employee) {
-                return $this->error('Employee not found.', 404);
+            $employee = Employee::where('id',$request->id)->delete();
+            if ($employee) {
+                return $this->success('Employee deleted successfully');
+            } else {
+                return $this->error('Unable to delete user');
             }
 
-            $employee->delete();
-            return $this->success('Employee deleted successfully');
+
         } catch (Exception $exception) {
             return $this->error($exception->getMessage(), 500);
         }
