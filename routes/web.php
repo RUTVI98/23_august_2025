@@ -11,7 +11,7 @@ use App\Http\Controllers\ProjectEmployeeController;
 
 Route::middleware('guestuser:admin')->group(function () {
     Route::controller(LoginController::class)->group(function () {
-        Route::get('/login', 'createlogin')->name('login');
+        Route::get('/', 'createlogin')->name('login');
         Route::post('/login', 'login_error')->name('login_error');
     });
 });
